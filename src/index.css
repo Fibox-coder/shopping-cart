@@ -111,7 +111,7 @@ p{
 
 
 .homepage {
-  height: 100vh; /* set the height to the full viewport height */
+  height: 100vh;
   display: flex;
   justify-content:space-around;
   align-items: center;
@@ -134,7 +134,7 @@ p{
 /* line is for the - in ------ Get DISCOUNT ------ */
 .line {
   text-align: center;
-  position: relative;
+  /* position: relative; */
   margin: 5px 0;
 }
 
@@ -244,6 +244,48 @@ width: auto;
   align-items: center;
 }
 
+/* Contact */
+
+.contact-wrapper{
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
+  gap: 100px;
+}
+
+.contact-icons{
+  width: 100px;
+  height: 100px;
+  margin: 0px 50px;
+}
+
+.background{
+position: absolute;
+bottom: -120px;
+z-index: -1;
+}
+
+
+/* Footer */
+
+.footer-wrapper{
+  box-shadow: 0 0 10px 0px rgb(203, 205, 211);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.github-icon{
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
 /* Animation */
 
 .hover-underline-animation {
@@ -266,4 +308,113 @@ width: auto;
 .hover-underline-animation:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+
+
+/* Modal / Cart */
+
+.modal-opacity{
+  display: none;
+  position: fixed; 
+  z-index: 100; 
+  right: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.modal-sidebar {
+  display: none;
+  position: fixed; 
+  z-index: 101;
+  right: 0;
+  top: 0;
+  width: 400px; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(255, 255, 255); 
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 30px;
+
+}
+
+.content{
+  font-size: 2rem;
+}
+
+.cart-image{
+  height: 150px;
+  width: auto;
+}
+
+.cart-items{
+  display: flex;
+}
+
+.add-item-button, .minus-item-button{
+padding: 5px;
+width: 30px;
+height: 30px;
+background-color: rgb(212, 212, 212);
+border: 0;
+color: var(--black-color);
+font-weight: 500;
+font-size: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+margin: 0px 20px;
+cursor: pointer;
+}
+
+.cart-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.amount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-price{
+  margin: 0;
+}
+
+.checkout{
+  display: block;
+  background-color: var(--main-color);
+  color: var(--black-color);
+  border: 0;
+  width: 80%;
+  height: 50px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 25px 0px 25px 0px;
+  cursor: pointer;
+}
+
+.close{
+  display: block;
+  background-color: rgb(238, 136, 136);
+  color: var(--black-color);
+  border: 0;
+  width: 80%;
+  height: 50px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
 }

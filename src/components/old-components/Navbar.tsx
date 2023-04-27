@@ -1,4 +1,5 @@
 import React from "react";
+import Cart from "../Cart";
 
 function NavBar() {
   return (
@@ -16,13 +17,7 @@ function NavBar() {
           </a>
         </li>
       </ul>
-      <div>
-        <img
-          src="/images/cart-icon.png"
-          alt="Shopping cart"
-          className="cart-icon"
-        />
-      </div>
+      <Cart />
     </nav>
   );
 }

@@ -16,7 +16,9 @@ function Main() {
           See fashion, <br /> be fashion, <br /> become fashion
         </h3>
       </div>
-      <button className="shop-button">Shop now</button>
+      <a href="/products">
+        <button className="shop-button">Shop now</button>
+      </a>
     </main>
   );
 }
