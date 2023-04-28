@@ -341,7 +341,6 @@ z-index: -1;
   align-items: center;
   text-align: center;
   padding-top: 30px;
-
 }
 
 .content{
@@ -355,6 +354,7 @@ z-index: -1;
 
 .cart-items{
   display: flex;
+  flex-direction: column;
 }
 
 .add-item-button, .minus-item-button{

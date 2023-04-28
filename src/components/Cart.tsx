@@ -3,11 +3,10 @@ import { ItemProps } from "./Item";
 
 interface CartProps {
   setCartItems: React.Dispatch<React.SetStateAction<ItemProps[]>>;
+  cartItems: ItemProps[];
 }
 
-function Cart({ setCartItems }: CartProps) {
-  const [cartItems, setLocalCartItems] = useState<ItemProps[]>([]);
-
+function Cart({ cartItems, setCartItems }: CartProps) {
   function handleCheckoutClick() {
     console.log(cartItems);
     // console.log(newCartItems);
@@ -44,7 +43,7 @@ function Cart({ setCartItems }: CartProps) {
       <div className="modal-opacity" id="modal-opacity"></div>
       <div className="modal-sidebar" id="modal-sidebar">
         <h3 className="content">Your shopping cart</h3>
-        <div className="cart-items">
+        {/* <div className="cart-items">
           <img className="cart-image" src="/products/polo-1.png" alt="polo" />
           <div className="cart-info">
             <h5>Men's Casual Pr...</h5>
@@ -55,7 +54,28 @@ function Cart({ setCartItems }: CartProps) {
               <button className="add-item-button">+</button>
             </div>
           </div>
+        </div> */}
+
+        <div className="cart-items">
+          {cartItems.map((item) => {
+            const { id, title, price, imageSrc } = item;
+            return (
+              <div key={id} className="cart-item">
+                <img className="cart-image" src={imageSrc} alt={title} />
+                <div className="cart-info">
+                  <h5>{title}</h5>
+                  <p>{price}</p>
+                  <div className="amount">
+                    <button className="minus-item-button">-</button>
+                    <p>1</p>
+                    <button className="add-item-button">+</button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
         <h4 className="total-price">Total: €22.30</h4>
         <button
           className="checkout"

@@ -1,6 +1,8 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export interface ItemProps {
+  id: string;
   imageSrc: string;
   title: string;
   price: string;
@@ -21,7 +23,13 @@ function addToCart(
   }); /* returns new array that includes new item */
 }
 
-function Item({ imageSrc, title, price, setCartItems }: ItemProps) {
+function Item({
+  id = uuidv4(),
+  imageSrc,
+  title,
+  price,
+  setCartItems,
+}: ItemProps) {
   return (
     <div className="item">
       <img src={imageSrc} alt={title} className="product-images" />
@@ -34,7 +42,10 @@ function Item({ imageSrc, title, price, setCartItems }: ItemProps) {
           className="add-button"
           /* Onclick: add new Item to the "cartItems" array*/
           onClick={() => {
-            addToCart({ imageSrc, title, price, setCartItems }, setCartItems);
+            addToCart(
+              { id, imageSrc, title, price, setCartItems },
+              setCartItems
+            );
           }}
         >
           Add to Cart
