@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ItemProps } from "./Item";
 
 interface CartProps {
@@ -7,9 +7,63 @@ interface CartProps {
 }
 
 function Cart({ cartItems, setCartItems }: CartProps) {
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const totalPrice = cartItems.reduce((total, item) => {
+      return total + item.price * (item.amount ?? 1);
+    }, 0);
+    setTotalPrice(totalPrice);
+  }, [cartItems]);
+
   function handleCheckoutClick() {
     console.log(cartItems);
-    // console.log(newCartItems);
+  }
+
+  function handleMinusClick(item: ItemProps) {
+    setCartItems((prevCartItems) => {
+      // Find the index of the item in the cartItems array
+      const itemIndex = prevCartItems.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      // Remove the item from the cartItems array if the amount is equal to 0
+      if (prevCartItems[itemIndex].amount === 1) {
+        return prevCartItems.filter((cartItem) => cartItem.id !== item.id);
+      }
+
+      // Create a copy of the item with the updated amount
+      const updatedItem = {
+        ...prevCartItems[itemIndex],
+        amount: (prevCartItems[itemIndex].amount ?? 0) - 1,
+      };
+
+      // Create a new cartItems array with the updated item
+      const newCartItems = [...prevCartItems];
+      newCartItems[itemIndex] = updatedItem;
+
+      // Return the new cartItems array
+      return newCartItems;
+    });
+  }
+
+  function handlePlusClick(item: ItemProps) {
+    setCartItems((prevCartItems) => {
+      // Find the index of the item in the cartItems array
+      const itemIndex = prevCartItems.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+      // Create a copy of the item with the updated amount
+      const updatedItem = {
+        ...prevCartItems[itemIndex],
+        amount: (prevCartItems[itemIndex].amount ?? 0) + 1,
+      };
+      // Create a new cartItems array with the updated item
+      const newCartItems = [...prevCartItems];
+      newCartItems[itemIndex] = updatedItem;
+      // Return the new cartItems array
+      return newCartItems;
+    });
   }
 
   /* Closes shopping cart modal when clicking CLOSE */
@@ -43,32 +97,30 @@ function Cart({ cartItems, setCartItems }: CartProps) {
       <div className="modal-opacity" id="modal-opacity"></div>
       <div className="modal-sidebar" id="modal-sidebar">
         <h3 className="content">Your shopping cart</h3>
-        {/* <div className="cart-items">
-          <img className="cart-image" src="/products/polo-1.png" alt="polo" />
-          <div className="cart-info">
-            <h5>Men's Casual Pr...</h5>
-            <p>€22.30</p>
-            <div className="amount">
-              <button className="minus-item-button">-</button>
-              <p>1</p>
-              <button className="add-item-button">+</button>
-            </div>
-          </div>
-        </div> */}
-
         <div className="cart-items">
           {cartItems.map((item) => {
-            const { id, title, price, imageSrc } = item;
+            const { id, title, price, imageSrc, amount } = item;
+
             return (
               <div key={id} className="cart-item">
                 <img className="cart-image" src={imageSrc} alt={title} />
                 <div className="cart-info">
                   <h5>{title}</h5>
-                  <p>{price}</p>
+                  <p>{"€" + (price * (item.amount ?? 0)).toFixed(2)}</p>
                   <div className="amount">
-                    <button className="minus-item-button">-</button>
-                    <p>1</p>
-                    <button className="add-item-button">+</button>
+                    <button
+                      className="minus-item-button"
+                      onClick={() => handleMinusClick(item)}
+                    >
+                      -
+                    </button>
+                    <p>{amount}</p>
+                    <button
+                      className="add-item-button"
+                      onClick={() => handlePlusClick(item)}
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
@@ -76,7 +128,7 @@ function Cart({ cartItems, setCartItems }: CartProps) {
           })}
         </div>
 
-        <h4 className="total-price">Total: €22.30</h4>
+        <h4 className="total-price">{"€" + totalPrice.toFixed(2)}</h4>
         <button
           className="checkout"
           id="checkout-button"
@@ -88,17 +140,6 @@ function Cart({ cartItems, setCartItems }: CartProps) {
           Close
         </button>
       </div>
-
-      {/* <span className="cart-count">{cartItems.length}</span>
-      <div className="cart-items">
-        {cartItems.map((item, index) => (
-          <div key={index}>
-            <img src={item.imageSrc} alt={item.title} />
-            <h5>{item.title}</h5>
-            <p>{item.price}</p>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
