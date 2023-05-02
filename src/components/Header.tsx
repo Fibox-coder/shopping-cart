@@ -14,7 +14,9 @@ function Header() {
   return (
     <header className="header">
       <h1>
-        Fashion<span className="title-color">Point</span>
+        <a href="/">
+          Fashion<span className="title-color">Point</span>
+        </a>
       </h1>
       <nav>
         <ul className="nav-list">

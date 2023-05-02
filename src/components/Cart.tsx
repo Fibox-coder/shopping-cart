@@ -8,6 +8,10 @@ interface CartProps {
 
 function Cart({ cartItems, setCartItems }: CartProps) {
   const [totalPrice, setTotalPrice] = useState(0);
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + (item.amount ?? 0),
+    0
+  );
 
   useEffect(() => {
     const totalPrice = cartItems.reduce((total, item) => {
@@ -71,10 +75,26 @@ function Cart({ cartItems, setCartItems }: CartProps) {
     const modal = document.getElementById("modal-sidebar");
     const modalOpacity = document.getElementById("modal-opacity");
     if (modal !== null) {
-      modal.style.display = "none";
-      if (modalOpacity !== null) {
-        modalOpacity.style.display = "none";
-      }
+      modal.classList.add("slide-out-modal");
+      modal.addEventListener(
+        "animationend",
+        () => {
+          modal.classList.remove("slide-out-modal");
+          modal.style.display = "none";
+        },
+        { once: true }
+      );
+    }
+    if (modalOpacity !== null) {
+      modalOpacity.classList.add("slide-out-opacity");
+      modalOpacity.addEventListener(
+        "animationend",
+        () => {
+          modalOpacity.classList.remove("slide-out-opacity");
+          modalOpacity.style.display = "none";
+        },
+        { once: true }
+      );
     }
   }
 
@@ -140,6 +160,7 @@ function Cart({ cartItems, setCartItems }: CartProps) {
           Close
         </button>
       </div>
+      <div className="cart-count">{totalAmount}</div>
     </div>
   );
 }

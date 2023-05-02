@@ -14,10 +14,6 @@ function App() {
     return savedCartItems ? JSON.parse(savedCartItems) : [];
   });
 
-  function testFunction() {
-    console.log(cartItems);
-  }
-
   /* Retrieves the cart items from local storage and sets 'cartItems' state to saved value */
   useEffect(() => {
     const savedCartItems = localStorage.getItem("cartItems");
@@ -44,8 +40,6 @@ function App() {
         />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-
-      <button onClick={testFunction}>test</button>
       <Footer />
     </div>
   );

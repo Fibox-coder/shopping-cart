@@ -29,10 +29,12 @@ a {
   font-weight: 500;
   color: var(--white-color);
   text-decoration: inherit;
+  transition: 0.2s ease-in-out;
 }
-a:hover {
+ul li a:hover {
   color: var(--main-color);
 }
+
 
 ul {
   list-style: none;
@@ -50,6 +52,11 @@ ul {
   border-radius: 50%;
   margin: 0px 25px 0px 50px;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.cart-icon:hover{
+  background-color: var(--main-color);
 }
 
 /* StoreName - Navbar components */
@@ -80,6 +87,24 @@ justify-content: center;
 
 .title-color{
   color: var(--main-color); 
+}
+
+.cart-count {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 99;
+  color: black;
+  text-align: center;
+  background-color: var(--main-color);
+  width: 22px;
+  height: 22px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1{
@@ -165,16 +190,16 @@ p{
   color: var(--white-color);
   background-color: var(--black-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: 0.2s ease-in-out;
 }
 
 .shop-button:hover {
   color: var(--main-color); 
 }
 
-.shop-button:focus,
-.shop-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.shop-button:active{
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 /* Products */
@@ -243,6 +268,15 @@ width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.add-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.add-button:active {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Contact */
@@ -325,10 +359,34 @@ z-index: -1;
   height: 100%; 
   overflow: auto; 
   background-color: rgba(0, 0, 0, 0.4); 
+  animation: slide-in-opacity 0.85s ease-in-out forwards;
+}
+
+.slide-out-opacity {
+  animation: slide-out-opacity 0.85s ease-in-out forwards;
+}
+
+@keyframes slide-in-opacity {
+  from {
+    transform: translateX(-100%); /* add transform to move from left */
+  }
+  to {
+    transform: translateX(0); /* add transform to move to center */
+  }
+}
+
+@keyframes slide-out-opacity {
+  from {
+    transform: translateX(0); /* add transform to move from left */
+  }
+  to {
+    transform: translateX(-100%); /* add transform to move to center */
+  }
 }
 
 .modal-sidebar {
   display: none;
+   /* display: flex; */
   position: fixed; 
   z-index: 101;
   right: 0;
@@ -338,13 +396,37 @@ z-index: -1;
   overflow:scroll; 
   overflow-x: hidden;
   background-color: rgb(255, 255, 255); 
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
   box-sizing: border-box;
+  animation: slide-in-sidebar 0.85s ease-in-out forwards;
+}
+
+
+.slide-out-modal{
+  animation: slide-out-sidebar 0.85s ease-in-out forwards;
+}
+
+
+@keyframes slide-in-sidebar {
+  from {
+    transform: translateX(400px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-sidebar {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(400px);
+  }
 }
 
 .content{
