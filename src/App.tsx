@@ -33,12 +33,12 @@ function App() {
       <Header />
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/shopping-cart/" element={<Main />} />
         <Route
-          path="/products"
+          path="/shopping-cart/products"
           element={<Products setCartItems={setCartItems} />}
         />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/shopping-cart/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>
