@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Products from "./components/Products";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Item, { ItemProps } from "./components/Item";
@@ -33,12 +33,12 @@ function App() {
       <Header />
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
       <Routes>
-        <Route path="/shopping-cart/" element={<Main />} />
+        <Route path="/shopping-cart" element={<Main />} />
         <Route
-          path="/shopping-cart/products"
+          path="shopping-cart/products"
           element={<Products setCartItems={setCartItems} />}
         />
-        <Route path="/shopping-cart/contact" element={<Contact />} />
+        <Route path="shopping-cart/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>
