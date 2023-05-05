@@ -36,7 +36,7 @@ function Header() {
           </li>
         </ul>
         <img
-          src="/images/cart-icon.png"
+          src="./images/cart-icon.png"
           alt="Shopping cart"
           className="cart-icon"
           onClick={handleCartClick}

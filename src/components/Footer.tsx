@@ -7,7 +7,7 @@ function Footer() {
       <a href="https://github.com/Fibox-coder?tab=repositories" target="blank">
         <img
           className="github-icon"
-          src="/images/github.png"
+          src="./images/github.png"
           alt="Github Icon"
         />
       </a>

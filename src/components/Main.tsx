@@ -4,7 +4,7 @@ function Main() {
   return (
     <main className="homepage">
       <img
-        src="/images/cover-image2.png"
+        src="./images/cover-image2.png"
         alt="Shopping cart"
         className="cover-image"
       />
